@@ -24,3 +24,5 @@ In the project directory, you can run:
 ### `npm run build`
 
 ### `npm run eject`
+
+//class 定义要大写开头

@@ -1,13 +1,20 @@
-import React from 'react';
+import React,{Component} from 'react'
 import {
     NavItem,Nav
-} from 'amazeui-react';
+} from 'amazeui-react'
 
 // 导航条
-var navInstance = (
-    <Nav pills>
-        <NavItem active href="#">接口列表</NavItem>
-        <NavItem href="src/www/newIns.html">新增接口</NavItem>
-    </Nav>
-);
-export default  navInstance;
+class NavInstance extends Component {
+    render(){
+        return(
+            <div>
+                <Nav pills>
+                    <NavItem active href="/index">接口列表</NavItem>
+                    <NavItem href="/newIns">新增接口</NavItem>
+                </Nav>
+            </div>
+        )
+    }
+}
+
+export default NavInstance
