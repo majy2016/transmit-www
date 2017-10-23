@@ -15,6 +15,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "amazeui-touch": "^1.0.0"
+    "amazeui-react": "^1.2.3"
   }
 }
