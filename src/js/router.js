@@ -3,8 +3,6 @@ import {BrowserRouter,Route } from 'react-router-dom'
 import Main from './main'
 import MainNewIns from './newIns'
 
-
-
 var BaseRouter = (
     <BrowserRouter basename = "/">
         <div>

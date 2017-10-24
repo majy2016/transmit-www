@@ -4,6 +4,9 @@ import NavInstance from './common'
 
 //主页列表
 class TabelInstance extends Component {
+
+
+
     render(){
         return(
             <div>
