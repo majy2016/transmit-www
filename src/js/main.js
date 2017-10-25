@@ -1,14 +1,44 @@
-import React,{Component} from 'react'
+import React, {Component} from 'react'
 import {Table} from 'amazeui-react'
 import NavInstance from './common'
 
 //主页列表
 class TabelInstance extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            a:""
+        }
+    }
 
+    componentWillMount(){
+        let self = this
+        var url = "http://192.168.1.244:5000/indexPage"
+        var parms = {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            }
+        }
+        fetch(url, parms).then(function (response) {
+            if ("200" == response.status) {
+                console.log("请求:" + url + " 成功！")
+                return response.text()
+            }
+        }).then(function (text) {
+            var rest = eval('('+ text +')')
+            //这里不用使用this 因为返回后的this不再是本类中的this
+            self.setState(
+                {a: rest.result.a}
+            )
+        })
+    }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <Table bordered striped responsive>
                     <thead>
@@ -21,7 +51,7 @@ class TabelInstance extends Component {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Amaze UI</td>
+                        <td>{this.state.a}</td>
                         <td>http://amazeui.org</td>
                         <td>2012-10-01</td>
                     </tr>
@@ -37,11 +67,11 @@ class TabelInstance extends Component {
     }
 }
 
-class Main extends Component{
-    render(){
-        return(
+class Main extends Component {
+    render() {
+        return (
             <div>
-                <NavInstance />
+                <NavInstance/>
                 <TabelInstance/>
             </div>
         )
