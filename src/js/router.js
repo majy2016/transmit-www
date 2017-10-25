@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter,Route } from 'react-router-dom'
-import Main from './main'
-import MainNewIns from './newIns'
+import Main from './www/main'
+import MainNewIns from './www/newIns'
 
 var BaseRouter = (
     <BrowserRouter basename = "/">

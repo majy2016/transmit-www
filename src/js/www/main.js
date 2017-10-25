@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Table} from 'amazeui-react'
 import NavInstance from './common'
+import RequestText from '../biz/base'
 
 //主页列表
 class TabelInstance extends Component {
@@ -14,26 +15,19 @@ class TabelInstance extends Component {
 
     componentWillMount(){
         let self = this
-        var url = "http://192.168.1.244:5000/indexPage"
-        var parms = {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+        var url = "http://192.168.1.85:5000/indexPage"
+        var type ="GET"
+        var r = RequestText(url,type)
+        r.then(function (text) {
+            // console.log(text)
+            if(text){
+                var rest = eval('('+ text +')')
+                self.setState(
+                    {a:rest.result.a}
+                )
             }
-        }
-        fetch(url, parms).then(function (response) {
-            if ("200" == response.status) {
-                console.log("请求:" + url + " 成功！")
-                return response.text()
-            }
-        }).then(function (text) {
-            var rest = eval('('+ text +')')
-            //这里不用使用this 因为返回后的this不再是本类中的this
-            self.setState(
-                {a: rest.result.a}
-            )
+
+
         })
     }
 
