@@ -12,7 +12,7 @@ function RequestText(arg1,arg2) {
         }
     }
     return fetch(url,parms).then(function (response) {
-        if (2000 === response.status) {
+        if (200 === response.status) {
             console.log("请求:" + url + " 成功！")
             return response.text()
         }else {
@@ -22,3 +22,11 @@ function RequestText(arg1,arg2) {
 }
 
 export default RequestText
+
+//字符串转object方法，同eval('('+data+')')
+function Eval(fn) {
+    var Fn = Function; //一个变量指向Function，防止有些前端编译工具报错
+    return new Fn('return ' + fn)();
+}
+
+export {Eval}
