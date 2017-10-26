@@ -1,6 +1,6 @@
 
 // fetch 请求方法
-function RequestText(arg1,arg2) {
+function RequestText(arg1,arg2,arg3) {
     var url = arg1
     var type = arg2
     var parms = {
@@ -11,7 +11,8 @@ function RequestText(arg1,arg2) {
             'Access-Control-Allow-Origin': '*',
         }
     }
-    return fetch(url,parms).then(function (response) {
+    var body = arg3
+    return fetch(url,parms,body).then(function (response) {
         if (200 === response.status) {
             console.log("请求:" + url + " 成功！")
             return response.text()
