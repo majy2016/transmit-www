@@ -7,8 +7,8 @@
 */
 
 import React, {Component} from 'react'
-import {Table} from 'amazeui-react'
-import NavInstance from './common'
+import {Table} from 'antd'
+import LayoutMa,{MenuMa} from './common'
 import RequestText,{Eval} from '../biz/base'
 import getConfig from './config'
 
@@ -23,13 +23,13 @@ class TabelInstance extends Component {
     componentWillMount(){
         //构造请求
         let self = this
-        var url = getConfig("indexPageUrl")
-        var type ="GET"
-        var r = RequestText(url,type)
+        let url = getConfig("indexPageUrl")
+        let type ="GET"
+        let r = RequestText(url,type)
         r.then(function (text) {
             // console.log(text)
             if(text){
-                var rest = Eval(text)
+                let rest = Eval(text)
                 self.setState(
                     {r:rest.result}
                 )
@@ -37,50 +37,65 @@ class TabelInstance extends Component {
         })
     }
 
+    //返回列表
     render() {
-        // 循环数据构造列表
-        var list = () =>{
-            var l = []
-            var is = this.state.r
-            for (var i in is){
-                var request_type
-                var sts
-                if(is[i].request_type === 1){
-                    request_type = "GET"
-                }else{
-                    request_type = "POST"
+        //表头
+        const columns = [{
+            title: '接口名称',
+            dataIndex: 'name',
+            render: text => <a>{text}</a>,
+        }, {
+            title: '接口类型',
+            dataIndex: 'request_type',
+        }, {
+            title: '接口url',
+            dataIndex: 'urlv',
+        },{
+            title: '开启状态',
+            dataIndex: 'status'
+        }]
+
+        //处理数据
+        const list = () => {
+            let l = []
+            let ls = this.state.r
+            for(let i in ls){
+                let sts
+                let rtype
+                if(ls[i].request_type ===1){
+                    rtype = "GET"
+                }else {
+                    rtype = "POST"
                 }
-                if(is[i].status === 1){
+                if(ls[i].status === 1){
                     sts = "开启"
-                }else{
+                }else {
                     sts = "关闭"
                 }
-                l.push(<tr key={i}><td>{is[i].name}</td><td>{is[i].urlv}</td><td>{request_type}</td><td>{sts}</td></tr>)
+                let ll = {
+                    key:ls[i].id,
+                    name:ls[i].name,
+                    request_type:rtype,
+                    urlv:ls[i].urlv,
+                    status:sts
+                }
+                l.push(ll)
             }
             return l
         }
-        //返回html
+
+        //列表选择方法
+        const rowSelection = {
+            onChange: (selectedRowKeys, selectedRows) => {
+                // console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+            },
+            getCheckboxProps: record => ({
+                disabled: record.name === 'Disabled User',
+            }),
+        }
+
         return (
-            <div>
-                <Table bordered striped responsive>
-                    <thead>
-                    <tr>
-                        <th>接口名称</th>
-                        <th>接口URL</th>
-                        <th>请求类型</th>
-                        <th>开启状态</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {list()}
-                    {/*<tr className="am-active">*/}
-                        {/*<td></td>*/}
-                        {/*<td>http://amazeui.org</td>*/}
-                        {/*<td>2012-10-01</td>*/}
-                    {/*</tr>*/}
-                    </tbody>
-                </Table>
-            </div>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={list()} />
         )
     }
 }
@@ -88,10 +103,7 @@ class TabelInstance extends Component {
 class Main extends Component {
     render() {
         return (
-            <div>
-                <NavInstance/>
-                <TabelInstance/>
-            </div>
+            <LayoutMa spider={<MenuMa />} content={<TabelInstance />} />
         )
     }
 }

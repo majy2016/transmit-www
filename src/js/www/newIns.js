@@ -7,12 +7,11 @@
 */
 
 import React, {Component} from 'react';
-import NavInstance,{ ButtonsInstance,ModalInstance }  from './common'
+import { Form } from 'antd';
+import LayoutMa,{ MenuMa,FormMa,ButtonMa }  from './common'
 import RequestText,{ Eval } from '../biz/base'
 import getConfig from './config'
-import {
-    ButtonToolbar,Input,Form
-} from 'amazeui-react';
+
 
 //新增接口表单
 class FormInstance extends Component {
@@ -46,7 +45,7 @@ class FormInstance extends Component {
                 var rest = Eval(text)
                 // console.log(rest)
                 if (rest.status ===1){
-                    <ModalInstance />.show()
+                    console.log(rest)
                 }
             }
         })
@@ -54,20 +53,13 @@ class FormInstance extends Component {
 
     render() {
         return (
-            <div>
-                <Form className="am-form" target="_blank">
-                    <Input type="text" label="接口名称：" id="doc-ipt-1" placeholder="输入接口名称"  ref="inputName" defaultValue=""/>
-                    <Input type="text" label="接口URL：" id="doc-ipt-2" placeholder="输入URL" ref="inputUrl" />
-                    <Input type="select" label="请求类型："  ref="inputType" >
-                        <option value="0">POST</option>
-                        <option value="1">GET</option>
-                    </Input>
-                    <ButtonToolbar>
-                        <ButtonsInstance onclik={this.handleChange} vl = "提交"/>
-                        <ButtonsInstance ty="reset" vl = "重置"/>
-                    </ButtonToolbar>
-                </Form>
-            </div>
+            <Form>
+                <FormMa label="接口名称" text="请输入接口名称" />
+                <FormMa label="接口类型" text="请输入接口类型" />
+                <FormMa label="接口url" text="请输入接口url" />
+                <ButtonMa text="提交"/>
+                <ButtonMa text="重置" htmlType="reset"/>
+            </Form>
         )
     }
 }
@@ -75,10 +67,7 @@ class FormInstance extends Component {
 class MainNewIns extends Component {
     render() {
         return (
-            <div>
-                <NavInstance/>
-                <FormInstance/>
-            </div>
+            <LayoutMa spider={<MenuMa />} content={<FormInstance />} />
         )
     }
 }

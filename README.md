@@ -1,4 +1,25 @@
 
+安装：
+npm install dva-cli -g
+dva -v
+创建项目：
+dva new dva-quickstart
+插件：
+npm install antd babel-plugin-import --save
+网址：
+https://ant.design/index-cn
+
+npm install -g create-react-app yarn
+
+yarn add antd
+
+yarn add react-app-rewired --dev
+
+yarn add babel-plugin-import --dev
+
+yarn add react-app-rewire-less --dev
+
+yarn start
 
 ```
 my-app/
