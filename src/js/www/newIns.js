@@ -1,6 +1,15 @@
+/*
+*   author:majiayang
+*   2017
+*
+*   新增接口页面
+*
+*/
+
 import React, {Component} from 'react';
 import NavInstance,{ ButtonsInstance,ModalInstance }  from './common'
 import RequestText,{ Eval } from '../biz/base'
+import getConfig from './config'
 import {
     ButtonToolbar,Input,Form
 } from 'amazeui-react';
@@ -24,7 +33,7 @@ class FormInstance extends Component {
         var i = thiz.refs.inputName.getValue()
         var u = thiz.refs.inputUrl.getValue()
         var s = thiz.refs.inputType.getValue()
-        var url = "http://192.168.1.244:5000/addnew"
+        var url = getConfig("addNewUrl")
         var type ="POST"
         var body = {
             "name":i,

@@ -1,3 +1,11 @@
+/*
+*   author:majiayang
+*   2017
+*
+*   html 组件公共类
+*
+*/
+
 import React, {Component} from 'react'
 import {
     NavItem, Nav, Button,ModalTrigger,Modal

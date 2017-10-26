@@ -1,7 +1,16 @@
+/*
+*   author:majiayang
+*   2017
+*
+*   主页页面
+*
+*/
+
 import React, {Component} from 'react'
 import {Table} from 'amazeui-react'
 import NavInstance from './common'
 import RequestText,{Eval} from '../biz/base'
+import getConfig from './config'
 
 //主页列表
 class TabelInstance extends Component {
@@ -14,7 +23,7 @@ class TabelInstance extends Component {
     componentWillMount(){
         //构造请求
         let self = this
-        var url = "http://192.168.1.244:5000/indexPage"
+        var url = getConfig("indexPageUrl")
         var type ="GET"
         var r = RequestText(url,type)
         r.then(function (text) {

@@ -1,3 +1,10 @@
+/*
+*   author:majiayang
+*   2017
+*
+*   html 基础方法类
+*
+*/
 
 // fetch 请求方法
 function RequestText(arg1,arg2,arg3) {

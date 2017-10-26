@@ -1,3 +1,11 @@
+/*
+*   author:majiayang
+*   2017
+*
+*   路由类
+*
+*/
+
 import React from 'react'
 import {BrowserRouter,Route } from 'react-router-dom'
 import Main from './www/main'
