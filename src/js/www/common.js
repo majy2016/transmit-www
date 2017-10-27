@@ -7,34 +7,34 @@
 */
 
 import React, {Component} from 'react'
-import { Form, Input, Button, Select,Menu,Icon,Layout } from 'antd';
-
+import {Form, Input, Button, Select, Menu, Icon, Layout} from 'antd'
+import {Key} from '../biz/base'
 
 /**
  *
  * 布局
  *
  */
-class LayoutMa extends Component{
+class LayoutMa extends Component {
 
-    render(){
-        const { Header, Content, Footer, Sider } = Layout
+    render() {
+        const {Header, Content, Footer, Sider} = Layout
 
-        return(
+        return (
             <div>
                 <Layout>
-                    <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, background:'0' }}>
+                    <Sider style={{overflow: 'auto', height: '100vh', position: 'fixed', left: 0, background: '0'}}>
                         {this.props.spider}
                     </Sider>
-                    <Layout style={{ marginLeft: 200 }}>
-                        <Header style={{ background: '#fff', padding: 0 }} />
-                        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-                            <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
+                    <Layout style={{marginLeft: 200}}>
+                        <Header style={{background: '#fff', padding: 0}}/>
+                        <Content style={{margin: '24px 16px 0', overflow: 'initial'}}>
+                            <div style={{padding: 24, background: '#fff', textAlign: 'center'}}>
                                 {this.props.content}
                             </div>
                         </Content>
-                        <Footer style={{ textAlign: 'center' }}>
-                                Design ©2017 Created by Majy
+                        <Footer style={{textAlign: 'center'}}>
+                            Design ©2017 Created by Majy
                         </Footer>
                     </Layout>
                 </Layout>
@@ -49,34 +49,34 @@ class LayoutMa extends Component{
  * todo
  */
 class MenuMa extends Component {
-    render(){
-        const SubMenu = Menu.SubMenu;
+    render() {
+        const SubMenu = Menu.SubMenu
 
-        const MenuItemGroup = Menu.ItemGroup;
+        const MenuItemGroup = Menu.ItemGroup
 
         // handleClick = (e) => {
         //     console.log('click ', e);
         // }
 
-        return(
+        return (
             <Menu
-                // onClick={this.handleClick}
-                style={{ width: 240 }}
+                onClick={this.handleClick}
+                style={{width: 240}}
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 mode="inline"
             >
-                <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
+                <SubMenu key="sub1" title={<span><Icon type="mail"/><span>测试系统</span></span>}>
                     <MenuItemGroup key="g1" title="Item 1">
-                        <Menu.Item key="1">Option 1</Menu.Item>
+                        <Menu.Item key="1"><a href="/index">接口列表</a></Menu.Item>
                         <Menu.Item key="2">Option 2</Menu.Item>
                     </MenuItemGroup>
                     <MenuItemGroup key="g2" title="Item 2">
-                        <Menu.Item key="3">Option 3</Menu.Item>
+                        <Menu.Item key="3" ><a href="/newIns">新增接口</a></Menu.Item>
                         <Menu.Item key="4">Option 4</Menu.Item>
                     </MenuItemGroup>
                 </SubMenu>
-                <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
+                <SubMenu key="sub2" title={<span><Icon type="appstore"/><span>Navigation Two</span></span>}>
                     <Menu.Item key="5">Option 5</Menu.Item>
                     <Menu.Item key="6">Option 6</Menu.Item>
                     <SubMenu key="sub3" title="Submenu">
@@ -84,7 +84,7 @@ class MenuMa extends Component {
                         <Menu.Item key="8">Option 8</Menu.Item>
                     </SubMenu>
                 </SubMenu>
-                <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
+                <SubMenu key="sub4" title={<span><Icon type="setting"/><span>Navigation Three</span></span>}>
                     <Menu.Item key="9">Option 9</Menu.Item>
                     <Menu.Item key="10">Option 10</Menu.Item>
                     <Menu.Item key="11">Option 11</Menu.Item>
@@ -110,15 +110,17 @@ class MenuMa extends Component {
  *  ghost   幽灵属性，使按钮背景透明
  *
  */
-class ButtonMa extends Component{
+class ButtonMa extends Component {
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <Button type={this.props.type}
-                        share = {this.props.share}
-                        size = {this.props.size}
+                        shape={this.props.shape}
+                        size={this.props.size}
                         htmlType={this.props.htmlType}
+                        onClick={this.props.onClick}
+                        ref={this.props.ref}
                 >
                     {this.props.text}
                 </Button>
@@ -142,27 +144,26 @@ class ButtonMa extends Component{
  * id     id
  *
  */
-class FormMa extends Component{
+class FormMa_ extends Component {
 
-    render(){
+    render() {
         const FormItem = Form.Item
-
         const Option = Select.Option
-
+        const { getFieldDecorator } = this.props.form
         const formItemLayout = {
             labelCol: {
-                xs: { span: 24 },
-                sm: { span: 5 },
+                xs: {span: 24},
+                sm: {span: 5},
             },
             wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 12 },
+                xs: {span: 24},
+                sm: {span: 12},
             },
         }
 
-        var constrForm = () =>{
+        var constrForm = () => {
             let r = []
-            if( this.props.formtype ==="1"){
+            if (this.props.formtype === "1") {
                 r.push(
                     <FormItem
                         {...formItemLayout}
@@ -170,11 +171,12 @@ class FormMa extends Component{
                         validateStatus={this.props.status}
                         help={this.props.help}
                         hasFeedback
+                        key={Key()}
                     >
-                        <Input placeholder={this.props.text} id={this.props.id} />
+                        <Input placeholder={this.props.text} id={this.props.id} ref={this.props.ref} key={Key()}/>
                     </FormItem>
                 )
-            }else if (this.props.formtype ==="2"){
+            } else if (this.props.formtype === "2") {
                 r.push(
                     <FormItem
                         {...formItemLayout}
@@ -182,6 +184,7 @@ class FormMa extends Component{
                         hasFeedback
                         validateStatus={this.props.status}
                         help={this.props.help}
+                        key={Key()}
                     >
                         <Select defaultValue="1">
                             <Option value="0">POST</Option>
@@ -189,22 +192,27 @@ class FormMa extends Component{
                         </Select>
                     </FormItem>
                 )
-            }else {
+            } else {
                 r.push(
                     <FormItem
                         {...formItemLayout}
                         label={this.props.label}
                         validateStatus={this.props.status}
                         help={this.props.help}
+                        key={Key()}
                     >
-                        <Input placeholder={this.props.text} id={this.props.id} />
+                        {getFieldDecorator('note', {
+                            rules: [{ required: true, message: 'Please input your note!' }],
+                        })(
+                            <Input placeholder={this.props.text} id={this.props.id}  />
+                        )}
                     </FormItem>
                 )
             }
             return r
         }
 
-        return(
+        return (
             <div>
                 {constrForm()}
             </div>
@@ -212,5 +220,7 @@ class FormMa extends Component{
     }
 }
 
+var FormMa = Form.create()(FormMa_)
+
 export default LayoutMa
-export  { MenuMa,FormMa,ButtonMa }
+export {MenuMa, FormMa, ButtonMa}

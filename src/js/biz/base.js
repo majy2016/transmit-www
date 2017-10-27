@@ -29,12 +29,16 @@ function RequestText(arg1,arg2,arg3) {
     })
 }
 
-export default RequestText
-
 //字符串转object方法，同eval('('+data+')')
 function Eval(fn) {
     var Fn = Function; //一个变量指向Function，防止有些前端编译工具报错
     return new Fn('return ' + fn)();
 }
 
-export {Eval}
+//随机生成key返回
+function Key() {
+    return Math.random().toString(36).substr(2)
+}
+
+export default RequestText
+export {Eval,Key}
