@@ -144,12 +144,11 @@ class ButtonMa extends Component {
  * id     id
  *
  */
-class FormMa_ extends Component {
+class FormItem extends Component {
 
     render() {
         const FormItem = Form.Item
         const Option = Select.Option
-        const { getFieldDecorator } = this.props.form
         const formItemLayout = {
             labelCol: {
                 xs: {span: 24},
@@ -201,11 +200,7 @@ class FormMa_ extends Component {
                         help={this.props.help}
                         key={Key()}
                     >
-                        {getFieldDecorator('note', {
-                            rules: [{ required: true, message: 'Please input your note!' }],
-                        })(
-                            <Input placeholder={this.props.text} id={this.props.id}  />
-                        )}
+                        <Input placeholder={this.props.text} id={this.props.id} defaultValue="" />
                     </FormItem>
                 )
             }
@@ -220,7 +215,6 @@ class FormMa_ extends Component {
     }
 }
 
-var FormMa = Form.create()(FormMa_)
 
 export default LayoutMa
-export {MenuMa, FormMa, ButtonMa}
+export {MenuMa, FormItem, ButtonMa}

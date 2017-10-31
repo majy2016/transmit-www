@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import { Form } from 'antd';
-import LayoutMa,{ MenuMa,FormMa,ButtonMa }  from './common'
+import LayoutMa,{ MenuMa,FormItem,ButtonMa }  from './common'
 import RequestText,{ Eval } from '../biz/base'
 import getConfig from './config'
 
@@ -29,6 +29,9 @@ class FormInstance extends Component {
     //onclick后调用方法
     handleChange(){
         var thiz = this
+        console.log(thiz.refs)
+        console.log(thiz.refs.FormMa)
+        console.log(thiz.refs.FormMa.refs.FormItem)
         var i = thiz.refs.inputName.getValue()
         var u = thiz.refs.inputUrl.getValue()
         var s = thiz.refs.inputType.getValue()
@@ -53,16 +56,26 @@ class FormInstance extends Component {
 
     render() {
         return (
+            <FormMa onClick={this.handleChange} ref="FormMa"/>
+        )
+    }
+}
+
+class FormMa_ extends  Component{
+    render(){
+        return(
             <Form>
-                <FormMa label="接口名称" text="请输入接口名称" />
-                <FormMa label="接口类型" text="请输入接口类型" />
-                <FormMa label="接口url" text="请输入接口url" />
-                <ButtonMa text="提交"/>
+                <FormItem label="接口名称" text="请输入接口名称" ref="FormItem" />
+                {/*<FormItem label="接口类型" text="请输入接口类型" />*/}
+                {/*<FormItem label="接口url" text="请输入接口url" />*/}
+                <ButtonMa text="提交" onClick={this.props.onClick}/>
                 <ButtonMa text="重置" htmlType="reset"/>
             </Form>
         )
     }
 }
+
+var FormMa = Form.create()(FormMa_)
 
 class MainNewIns extends Component {
     render() {
