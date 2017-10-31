@@ -200,7 +200,7 @@ class FormItem extends Component {
                         help={this.props.help}
                         key={Key()}
                     >
-                        <Input placeholder={this.props.text} id={this.props.id} defaultValue="" />
+                        <Input placeholder={this.props.text} id={this.props.id}  defaultValue=""/>
                     </FormItem>
                 )
             }

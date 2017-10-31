@@ -29,9 +29,7 @@ class FormInstance extends Component {
     //onclick后调用方法
     handleChange(){
         var thiz = this
-        console.log(thiz.refs)
-        console.log(thiz.refs.FormMa)
-        console.log(thiz.refs.FormMa.refs.FormItem)
+        console.log(thiz.props.form)
         var i = thiz.refs.inputName.getValue()
         var u = thiz.refs.inputUrl.getValue()
         var s = thiz.refs.inputType.getValue()
@@ -56,19 +54,31 @@ class FormInstance extends Component {
 
     render() {
         return (
-            <FormMa onClick={this.handleChange} ref="FormMa"/>
+            <FormMa onClick={this.handleChange} />
         )
     }
 }
 
 class FormMa_ extends  Component{
+
+    call(){
+        console.log(this)
+        console.log(this.props.form.getFieldsValue())
+        console.log(this.refs.name)
+        var x = this.refs.name
+        console.log(x.value)
+        console.log(x.value)
+        // this.props.onClick()
+    }
+
     render(){
+
         return(
             <Form>
-                <FormItem label="接口名称" text="请输入接口名称" ref="FormItem" />
-                {/*<FormItem label="接口类型" text="请输入接口类型" />*/}
-                {/*<FormItem label="接口url" text="请输入接口url" />*/}
-                <ButtonMa text="提交" onClick={this.props.onClick}/>
+                <FormItem label="接口名称" text="请输入接口名称" ref="name" Value="" />
+                <FormItem label="接口类型" text="请输入接口类型" ref="type" />
+                <FormItem label="接口url" text="请输入接口url" ref="url" />
+                <ButtonMa text="提交" onClick={this.call.bind(this)}/>
                 <ButtonMa text="重置" htmlType="reset"/>
             </Form>
         )
