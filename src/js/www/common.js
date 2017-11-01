@@ -149,6 +149,7 @@ class FormItem extends Component {
     render() {
         const FormItem = Form.Item
         const Option = Select.Option
+        const { getFieldDecorator  } = this.props.f
         const formItemLayout = {
             labelCol: {
                 xs: {span: 24},
@@ -199,8 +200,9 @@ class FormItem extends Component {
                         validateStatus={this.props.status}
                         help={this.props.help}
                         key={Key()}
+                        id={this.props.id}
                     >
-                        <Input placeholder={this.props.text} id={this.props.id}  defaultValue=""/>
+                        <Input placeholder={this.props.text} id={this.props.id} {...getFieldDecorator ('name')} />
                     </FormItem>
                 )
             }

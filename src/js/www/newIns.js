@@ -63,21 +63,27 @@ class FormMa_ extends  Component{
 
     call(){
         console.log(this)
-        console.log(this.props.form.getFieldsValue())
-        console.log(this.refs.name)
-        var x = this.refs.name
-        console.log(x.value)
-        console.log(x.value)
+        console.log(this.props.form)
+        var x = this.props.form
+        console.log(x.getFieldsValue())
+        console.log(x.getFieldValue('name'))
+        var y = x.getFieldsValue()
+        for(var i in y){
+            console.log(i)
+            console.log(y[i])
+        }
+        console.log(x.name)
+        console.log(x.validateFields())
         // this.props.onClick()
     }
 
     render(){
 
         return(
-            <Form>
-                <FormItem label="接口名称" text="请输入接口名称" ref="name" Value="" />
-                <FormItem label="接口类型" text="请输入接口类型" ref="type" />
-                <FormItem label="接口url" text="请输入接口url" ref="url" />
+            <Form >
+                <FormItem label="接口名称" text="请输入接口名称" name="name" f={this.props.form} id="1"/>
+                {/*<FormItem label="接口类型" text="请输入接口类型" name="type" form={this.props.form} id="2"/>*/}
+                {/*<FormItem label="接口url" text="请输入接口url" ref="url" />*/}
                 <ButtonMa text="提交" onClick={this.call.bind(this)}/>
                 <ButtonMa text="重置" htmlType="reset"/>
             </Form>
