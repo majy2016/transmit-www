@@ -146,6 +146,12 @@ class ButtonMa extends Component {
  */
 class FormItem extends Component {
 
+    constructor(props) {
+        super(props)
+        console.log(123)
+        console.log(this)
+    }
+
     render() {
         const FormItem = Form.Item
         const Option = Select.Option
@@ -202,7 +208,7 @@ class FormItem extends Component {
                         key={Key()}
                         id={this.props.id}
                     >
-                        <Input placeholder={this.props.text} id={this.props.id} {...getFieldDecorator ('name')} />
+                        <Input placeholder={this.props.text} id={this.props.id} {...getFieldDecorator ('name',{initialValue:"1"})} />
                     </FormItem>
                 )
             }

@@ -18,10 +18,6 @@ class FormInstance extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            name:"",
-            url:""
-        }
         //内部函数需要bind一下外面类的中this才能使用
         this.handleChange = this.handleChange.bind(this)
     }
