@@ -1,15 +1,11 @@
-
-安装：
-npm install dva-cli -g
-dva -v
-创建项目：
-dva new dva-quickstart
 插件：
 npm install antd babel-plugin-import --save
 网址：
 https://ant.design/index-cn
 
 npm install -g create-react-app yarn
+
+create-react-app antd-demo
 
 yarn add antd
 
