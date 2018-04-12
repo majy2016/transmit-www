@@ -1,5 +1,3 @@
-插件：
-npm install antd babel-plugin-import --save
 网址：
 https://ant.design/index-cn
 
